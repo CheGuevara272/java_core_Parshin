@@ -12,6 +12,11 @@ public class Faculty {
 
     List<Group> faculty = new ArrayList<>();
 
+    public void addGroup(Group group) {
+        this.faculty.add(group);
+    }
+
+
     public void printFacultyName() {
         System.out.println("\t" + "Faculty name: " + facultyName);
         for (Group item : faculty) {

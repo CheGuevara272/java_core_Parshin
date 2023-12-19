@@ -24,4 +24,9 @@ public class Pair<L, R> {
     public void setR(R r) {
         this.r = r;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Student name: %s; avg score: %.2f", l, r);
+    }
 }
