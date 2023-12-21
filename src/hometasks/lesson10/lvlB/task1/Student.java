@@ -1,4 +1,4 @@
-package hometasks.lesson10.lvlA.task3;
+package hometasks.lesson10.lvlB.task1;
 
 public class Student {
     String name;

@@ -1,4 +1,4 @@
-package hometasks.lesson10.lvlA.task4;
+package hometasks.lesson10.lvlA.task3;
 
 import java.util.Random;
 

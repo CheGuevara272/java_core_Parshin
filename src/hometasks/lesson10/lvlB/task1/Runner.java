@@ -1,4 +1,4 @@
-package hometasks.lesson10.lvlA.task3;
+package hometasks.lesson10.lvlB.task1;
 
 /*Создать класс Student который будет хранить в себе имя и средний балл студента.
 Создать класс Group который будет хранить в себе номер группы и список одногруппников.
