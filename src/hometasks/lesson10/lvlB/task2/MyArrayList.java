@@ -3,7 +3,7 @@ package hometasks.lesson10.lvlB.task2;
 import java.util.*;
 
 public class MyArrayList<T> implements List<T> {
-    List<T> myArrayList = new ArrayList<>();
+    private List<T> myArrayList = new ArrayList<>();
 
     @Override
     public String toString() {

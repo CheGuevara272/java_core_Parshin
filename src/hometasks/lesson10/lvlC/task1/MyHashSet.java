@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class MyHashSet<T> implements Set<T> {
-    Set<T> myHashSet = new HashSet<>();
+    private Set<T> myHashSet = new HashSet<>();
 
     @Override
     public String toString() {
@@ -18,32 +18,42 @@ public class MyHashSet<T> implements Set<T> {
 
     @Override
     public int size() {
-        return 0;
+        return myHashSet.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return myHashSet.isEmpty();
     }
 
     @Override
     public boolean add(T t) {
-        return false;
+        return myHashSet.add(t);
     }
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        return myHashSet.remove(o);
     }
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        return myHashSet.contains(o);
     }
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        return myHashSet.addAll(c);
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        return myHashSet.containsAll(c);
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        return myHashSet.removeAll(c);
     }
 
 
@@ -63,16 +73,7 @@ public class MyHashSet<T> implements Set<T> {
     }
 
     @Override
-    public boolean containsAll(Collection<?> c) {
-        return false;
-    }
-    @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
         return false;
     }
 
