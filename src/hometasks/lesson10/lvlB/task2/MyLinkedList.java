@@ -3,7 +3,7 @@ package hometasks.lesson10.lvlB.task2;
 import java.util.*;
 
 public class MyLinkedList<T> implements List<T> {
-    List<T> myLinkedList = new LinkedList<>();
+    private List<T> myLinkedList = new LinkedList<>();
 
     @Override
     public String toString() {
