@@ -16,16 +16,10 @@ import java.util.Random;
 public class Runner {
     static Random random = new Random();
     public static void main(String[] args) {
-        University BSU = new University("BSU");
-        fillUniversity(BSU);
-        for (Faculty faculty : BSU.university) {
-            fillFaculty(faculty);
-            for (Group group : faculty.faculty) {
-                fillGroup(group);
-            }
-        }
+        University bsu = new University("bsu");
+        fillUniversity(bsu);
 
-        BSU.printUniversityName();
+        bsu.printUniversityName();
     }
 
     public static Student generateStudent() {
@@ -33,11 +27,15 @@ public class Runner {
     }
 
     public static Group generateGroup() {
-        return new Group(random.nextInt());
+        Group group = new Group(random.nextInt());
+        fillGroup(group);
+        return group;
     }
 
     public static Faculty generateFaculty() {
-        return new Faculty(String.valueOf(random.nextInt()));
+        Faculty faculty = new Faculty(String.valueOf(random.nextInt()));
+        fillFaculty(faculty);
+        return faculty;
     }
 
     public static void fillGroup(Group group) {
