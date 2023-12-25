@@ -36,11 +36,16 @@ public class MyHashSet<T> implements Set<T> {
         return false;
     }
 
-
     @Override
     public boolean contains(Object o) {
         return false;
     }
+
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        return false;
+    }
+
 
     @Override
     public Iterator<T> iterator() {
@@ -61,12 +66,6 @@ public class MyHashSet<T> implements Set<T> {
     public boolean containsAll(Collection<?> c) {
         return false;
     }
-
-    @Override
-    public boolean addAll(Collection<? extends T> c) {
-        return false;
-    }
-
     @Override
     public boolean retainAll(Collection<?> c) {
         return false;
