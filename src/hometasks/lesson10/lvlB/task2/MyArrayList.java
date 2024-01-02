@@ -1,47 +1,135 @@
 package hometasks.lesson10.lvlB.task2;
 
+import jdk.internal.util.ArraysSupport;
+
 import java.util.*;
 
 public class MyArrayList<T> implements List<T> {
-    private List<T> myArrayList = new ArrayList<>();
+
+    ArrayList<T> myArrayList = new ArrayList<>();
+    Object[] data;
+
+    private static final int DEFAULT_CAPACITY = 10;
+
+    private static final Object[] EMPTY_DATA = {};
+
+    private static final Object[] DEFAULTCAPACITY_EMPTY_DATA = {};
+
+    private int size;
+
+    MyArrayList(int initialCapacity) {
+        if (initialCapacity > 0) {
+            this.data = new Object[initialCapacity];
+        } else {
+            this.data = EMPTY_DATA;
+        }
+    }
+
+    MyArrayList() {
+        this.data = DEFAULTCAPACITY_EMPTY_DATA;
+    }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MyArrayList{");
-        sb.append("myArrayList=").append(myArrayList);
+        sb.append("myArrayList=").append(data);
         sb.append('}');
         return sb.toString();
     }
 
+    private void add(T t, Object[] data, int s) {
+        if (s == data.length)
+            data = grow();
+        data[s] = t;
+        size = s + 1;
+    }
+
     @Override
     public boolean add(T t) {
-        return myArrayList.add(t);
+        add(t, data, size);
+        return true;
     }
 
     @Override
     public T remove(int index) {
-        return myArrayList.remove(index);
+        Objects.checkIndex(index, size);
+
+        T oldValue = (T) data[index];
+        fastRemove(data, index);
+
+        return oldValue;
+    }
+
+    private void fastRemove(Object[] es, int i) {
+        final int newSize;
+        if ((newSize = size - 1) > i)
+            System.arraycopy(es, i + 1, es, i, newSize - i);
+        es[size = newSize] = null;
     }
 
     @Override
     public T get(int index) {
-        return myArrayList.get(index);
+        Objects.checkIndex(index, size);
+        return data(index);
     }
 
     @Override
     public T set(int index, T element) {
-        return myArrayList.set(index, element);
+        Objects.checkIndex(index, size);
+        T oldValue = data(index);
+        data[index] = element;
+        return oldValue;
     }
 
     @Override
     public void add(int index, T element) {
-        myArrayList.add(index, element);
+        final int s;
+        Object[] data;
+        if ((s = size) == (data = this.data).length)
+            data = grow();
+        System.arraycopy(data, index,
+                data, index + 1,
+                s - index);
+        data[index] = element;
+        size = s + 1;
     }
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return myArrayList.addAll(c);
+        Object[] a = c.toArray();
+        int numNew = a.length;
+        if (numNew == 0)
+            return false;
+        Object[] data;
+        final int s;
+        if (numNew > (data = this.data).length - (s = size))
+            data = grow(s + numNew);
+        System.arraycopy(a, 0, data, s, numNew);
+        size = s + numNew;
+        return true;
     }
+
+
+    private Object[] grow(int minCapacity) {
+        int oldCapacity = data.length;
+        if (oldCapacity > 0 || data != DEFAULTCAPACITY_EMPTY_DATA) {
+            int newCapacity = ArraysSupport.newLength(oldCapacity,
+                    minCapacity - oldCapacity, /* minimum growth */
+                    oldCapacity >> 1           /* preferred growth */);
+            return data = Arrays.copyOf(data, newCapacity);
+        } else {
+            return data = new Object[Math.max(DEFAULT_CAPACITY, minCapacity)];
+        }
+    }
+
+    private Object[] grow() {
+        return grow(size + 1);
+    }
+
+    T data(int index) {
+        return (T) data[index];
+    }
+
 
 
     @Override
