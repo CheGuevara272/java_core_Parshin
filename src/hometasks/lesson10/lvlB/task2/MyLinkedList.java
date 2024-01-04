@@ -1,19 +1,29 @@
 package hometasks.lesson10.lvlB.task2;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class MyLinkedList<T> implements List<T> {
-    private LinkedList<T> myLinkedList = new LinkedList<>();
-
     transient int size = 0;
     transient Node<T> first;
     transient Node<T> last;
 
+    public MyLinkedList() {
+    }
+
+    public MyLinkedList(Collection<? extends T> c) {
+        this();
+        addAll(c);
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MyLinkedList{");
-        sb.append("myLinkedList=").append(myLinkedList);
-        sb.append('}');
+        for (Node<T> x = first; x != null; x = x.next) {
+            sb.append(x.item).append(',');
+        }
         return sb.toString();
     }
 
