@@ -5,8 +5,6 @@ import jdk.internal.util.ArraysSupport;
 import java.util.*;
 
 public class MyArrayList<T> implements List<T> {
-
-    ArrayList<T> myArrayList = new ArrayList<>();
     Object[] data;
 
     private static final int DEFAULT_CAPACITY = 10;
@@ -32,7 +30,7 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MyArrayList{");
-        sb.append("myArrayList=").append(data);
+        sb.append("data=").append(Arrays.toString(data));
         sb.append('}');
         return sb.toString();
     }
