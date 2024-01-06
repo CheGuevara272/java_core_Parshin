@@ -1,4 +1,4 @@
-package hometasks.lesson10_1.levelB;
+package hometasks.lesson10_1.levelB.task1;
 
 import hometasks.appendix.Versh;
 
