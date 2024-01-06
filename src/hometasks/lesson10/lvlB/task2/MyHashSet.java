@@ -1,4 +1,4 @@
-package hometasks.lesson10.lvlC.task1;
+package hometasks.lesson10.lvlB.task2;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -27,7 +27,6 @@ public class MyHashSet<T> implements Set<T> {
         map = new HashMap<>(initialCapacity);
     }
 
-    //У меня воппрос по этому методу в классе Runner
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MyHashSet{");

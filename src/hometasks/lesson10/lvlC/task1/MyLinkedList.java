@@ -1,4 +1,4 @@
-package hometasks.lesson10.lvlB.task2;
+package hometasks.lesson10.lvlC.task1;
 
 import java.util.Collection;
 import java.util.Iterator;
