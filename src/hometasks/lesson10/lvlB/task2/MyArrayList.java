@@ -4,6 +4,18 @@ import jdk.internal.util.ArraysSupport;
 
 import java.util.*;
 
+/*Создать класс MyArrayList с имплементацией интерфейса List<T>.
+  Не использовать реализацию ArrayList из JDK, но можно подсмотреть в неё!
+  Реализовать методы:
+    toString()
+    add(T element)
+    remove(int index)
+    get(int index)
+    set(int index, T element)
+    add(int index, T element)
+    addAll(Collection<? extends T> c)
+*/
+
 public class MyArrayList<T> implements List<T> {
     Object[] data;
 

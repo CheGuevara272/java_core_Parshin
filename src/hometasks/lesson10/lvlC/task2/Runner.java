@@ -3,6 +3,10 @@ package hometasks.lesson10.lvlC.task2;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/*В кругу стоят n человек. При ведении счёта по кругу итератором вычёркивается каждый второй человек,
+  пока не останется один. Напишите метод, который на вход принимает список людей n человек,
+  а на выходе выводит имя оставшегося человека. Показать пример работы метода в классе Runner.*/
+
 public class Runner {
     public static void main(String[] args) {
         ArrayList<Integer> ints = new ArrayList<>();

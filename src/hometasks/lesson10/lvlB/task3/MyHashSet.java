@@ -1,9 +1,19 @@
-package hometasks.lesson10.lvlB.task2;
+package hometasks.lesson10.lvlB.task3;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+
+/*Создать класс MyHashSet с имплементацией интерфейса Set<T>. Не использовать реализацию HashSet из JDK, но можно подсмотреть в неё!
+  Реализовать методы:
+    toString()
+    size()
+    isEmpty()
+    add(T e)
+    remove(Object o)
+    contains(Object o)
+*/
 
 public class MyHashSet<T> implements Set<T> {
     private transient HashMap<T, Object> map;

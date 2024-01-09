@@ -5,6 +5,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+/*Cоздать класс MyLinkedList с имплементацией интерфейса List<T>.
+  Не использовать реализацию LinkedList из JDK, но можно подсмотреть в неё!
+  Реализовать методы:
+    toString()
+    add(T element)
+    remove(int index)
+    get(int index)
+    set(int index, T element)
+    add(int index, T element)
+    addAll(Collection<? extends T> c)
+*/
+
 public class MyLinkedList<T> implements List<T> {
     transient int size = 0;
     transient Node<T> first;
