@@ -3,6 +3,9 @@ package hometasks.lesson10_1.levelA.task2;
 import java.util.Map;
 import java.util.TreeMap;
 
+/*Создайте класс Run и в методе main создайте TreeMap группы с набранными количествами баллов.
+  Вывести в консоль список группы в  формате: Фамилия: сумма баллов.*/
+
 public class Run {
     public static void main(String[] args) {
         Map<String, Float> group = new TreeMap<>();

@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
+/*Возьмите текст из класса Versh и подсчитайте частоту встречаемости каждого слова.
+  Создайте класс Run и в методе main выведите результат подсчётов в формате: слово=частота.*/
+
 public class Run {
     public static void main(String[] args) {
 
