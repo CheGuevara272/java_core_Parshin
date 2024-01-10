@@ -1,7 +1,5 @@
 package hometasks.lesson6.lvlA.task2;
 
-import java.util.Arrays;
-
 public class Run {
     public static void main(String[] args) {
         String s1 = "дом";

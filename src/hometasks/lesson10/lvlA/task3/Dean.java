@@ -12,6 +12,7 @@ import java.util.Random;
 public class Dean {
 
     static Random random = new Random();
+
     public static void main(String[] args) {
         Group group = new Group();
         fillGroup(group);

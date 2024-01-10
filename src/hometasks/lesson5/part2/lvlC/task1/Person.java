@@ -20,7 +20,7 @@ public class Person {
         this.age = age;
     }
 
-    public void displayInfo(){
+    public void displayInfo() {
         System.out.println("My name is " + name + '\n' + "I am " + age + " years old");
     }
 }

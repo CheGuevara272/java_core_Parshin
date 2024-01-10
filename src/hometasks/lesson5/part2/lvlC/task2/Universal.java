@@ -1,6 +1,6 @@
 package hometasks.lesson5.part2.lvlC.task2;
 
-public class Universal extends Shop{
+public class Universal extends Shop {
     private boolean roundTheHours = false;
 
     public boolean isRoundTheHours() {
@@ -18,8 +18,7 @@ public class Universal extends Shop{
     public void setWorkingHours(String workingHours) {
         if (roundTheHours) {
             super.setWorkingHours("Round the Hours");
-        }
-        else {
+        } else {
             super.setWorkingHours(workingHours);
         }
     }

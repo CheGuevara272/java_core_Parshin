@@ -141,7 +141,6 @@ public class MyArrayList<T> implements List<T> {
     }
 
 
-
     @Override
     public int size() {
         return 0;

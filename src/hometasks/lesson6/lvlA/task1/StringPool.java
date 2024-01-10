@@ -1,7 +1,5 @@
 package hometasks.lesson6.lvlA.task1;
 
-import java.util.Arrays;
-
 // 1.Сколько строк будет храниться в String Pool в результате выполнения следующего кода:
 public class StringPool {
     public static void main(String[] args) {
