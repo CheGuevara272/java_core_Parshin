@@ -1,9 +1,6 @@
 package hometasks.lesson10.lvlB.task3;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 /*Создать класс MyHashSet с имплементацией интерфейса Set<T>. Не использовать реализацию HashSet из JDK, но можно подсмотреть в неё!
   Реализовать методы:
@@ -17,7 +14,6 @@ import java.util.Set;
 
 public class MyHashSet<T> implements Set<T> {
     private transient HashMap<T, Object> map;
-
     private static final Object PRESENT = new Object();
 
     public MyHashSet() {
@@ -70,15 +66,35 @@ public class MyHashSet<T> implements Set<T> {
         return map.containsKey(o);
     }
 
-
     @Override
-    public boolean containsAll(Collection<?> c) {
-        return false;
+    public boolean addAll(Collection<? extends T> c) {
+        boolean modified = false;
+        for (T t : c)
+            if (add(t))
+                modified = true;
+        return modified;
     }
 
     @Override
-    public boolean addAll(Collection<? extends T> c) {
-        return false;
+    public boolean containsAll(Collection<?> c) {
+        for (Object e : c)
+            if (!contains(e))
+                return false;
+        return true;
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        Objects.requireNonNull(c);
+        boolean modified = false;
+        Iterator<?> it = iterator();
+        while (it.hasNext()) {
+            if (c.contains(it.next())) {
+                it.remove();
+                modified = true;
+            }
+        }
+        return modified;
     }
 
     @Override
@@ -98,11 +114,6 @@ public class MyHashSet<T> implements Set<T> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
         return false;
     }
 
