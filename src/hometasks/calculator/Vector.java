@@ -2,8 +2,8 @@ package hometasks.calculator;
 
 import java.util.Arrays;
 
-public class Vector extends Var implements Operation<Double[]> {
-    private Double[] vectorValue;
+public class Vector extends Var implements Operation<Var> {
+    public Double[] vectorValue;
 
     public Vector(Double[] value) {
         this.vectorValue = value;
@@ -23,38 +23,46 @@ public class Vector extends Var implements Operation<Double[]> {
     }
 
     @Override
-    public Double[] sum(Double[] t1, Double[] t2) {
-        Double[] vectorSum = new Double[t1.length];
-        for (int i = 0; i < t1.length; i++) {
-            vectorSum[i] = t1[i] + t2[i];
+    public void sum(Var var) {
+        if (var instanceof Vector) {
+            for (int i = 0; i < this.vectorValue.length; i++) {
+                this.vectorValue[i] += ((Vector) var).vectorValue[i];
+            }
+        } else {
+
         }
-        return vectorSum;
     }
 
     @Override
-    public Double[] subt(Double[] t1, Double[] t2) {
-        Double[] vectorSum = new Double[t1.length];
-        for (int i = 0; i < t1.length; i++) {
-            vectorSum[i] = t1[i] - t2[i];
+    public void subt(Var var) {
+        if (var instanceof Vector) {
+            for (int i = 0; i < this.vectorValue.length; i++) {
+                this.vectorValue[i] -= ((Vector) var).vectorValue[i];
+            }
+        } else {
+
         }
-        return vectorSum;
     }
 
     @Override
-    public Double[] mult(Double[] t1, Double[] t2) {
-        Double[] vectorSum = new Double[t1.length];
-        for (int i = 0; i < t1.length; i++) {
-            vectorSum[i] = t1[i] * t2[i];
+    public void mult(Var var) {
+        if (var instanceof Vector) {
+            for (int i = 0; i < this.vectorValue.length; i++) {
+                this.vectorValue[i] *= ((Vector) var).vectorValue[i];
+            }
+        } else {
+
         }
-        return vectorSum;
     }
 
     @Override
-    public Double[] div(Double[] t1, Double[] t2) {
-        Double[] vectorSum = new Double[t1.length];
-        for (int i = 0; i < t1.length; i++) {
-            vectorSum[i] = t1[i] / t2[i];
+    public void div(Var var) {
+        if (var instanceof Vector) {
+            for (int i = 0; i < this.vectorValue.length; i++) {
+                this.vectorValue[i] /= ((Vector) var).vectorValue[i];
+            }
+        } else {
+
         }
-        return vectorSum;
     }
 }

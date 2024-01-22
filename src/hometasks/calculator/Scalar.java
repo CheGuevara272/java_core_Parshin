@@ -1,7 +1,7 @@
 package hometasks.calculator;
 
-public class Scalar extends Var implements Operation<Double> {
-    private Double scalarValue;
+public class Scalar extends Var implements Operation<Var> {
+    public Double scalarValue;
 
     public Scalar(Double value) {
         this.scalarValue = value;
@@ -20,22 +20,38 @@ public class Scalar extends Var implements Operation<Double> {
     }
 
     @Override
-    public Double sum(Double t1, Double t2) {
-        return t1 + t2;
+    public void sum(Var var) {
+        if (var instanceof Scalar) {
+            this.scalarValue += ((Scalar) var).scalarValue;
+        } else {
+
+        }
     }
 
     @Override
-    public Double subt(Double t1, Double t2) {
-        return t1 - t2;
+    public void subt(Var var) {
+        if (var instanceof Scalar) {
+            this.scalarValue += ((Scalar) var).scalarValue;
+        } else {
+
+        }
     }
 
     @Override
-    public Double mult(Double t1, Double t2) {
-        return t1 * t2;
+    public void mult(Var var) {
+        if (var instanceof Scalar) {
+            this.scalarValue += ((Scalar) var).scalarValue;
+        } else {
+
+        }
     }
 
     @Override
-    public Double div(Double t1, Double t2) {
-        return t1 / t2;
+    public void div(Var var) {
+        if (var instanceof Scalar) {
+            this.scalarValue += ((Scalar) var).scalarValue;
+        } else {
+
+        }
     }
 }
