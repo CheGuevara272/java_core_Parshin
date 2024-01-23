@@ -1,7 +1,15 @@
 package hometasks.calculator;
 
-public class Scalar extends Var implements Operation<Var> {
+public class Scalar extends Var {
     public Double scalarValue;
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Scalar{");
+        sb.append("scalarValue=").append(scalarValue);
+        sb.append('}');
+        return sb.toString();
+    }
 
     public Scalar(Double value) {
         this.scalarValue = value;
@@ -20,38 +28,46 @@ public class Scalar extends Var implements Operation<Var> {
     }
 
     @Override
-    public void sum(Var var) {
-        if (var instanceof Scalar) {
-            this.scalarValue += ((Scalar) var).scalarValue;
+    public Scalar sum(Var other) {
+        Scalar result = new Scalar(this.scalarValue);
+        if (other instanceof Scalar) {
+            result.scalarValue = this.scalarValue + ((Scalar) other).scalarValue;
         } else {
 
         }
+        return result;
     }
 
     @Override
-    public void subt(Var var) {
-        if (var instanceof Scalar) {
-            this.scalarValue += ((Scalar) var).scalarValue;
+    public Scalar subt(Var other) {
+        Scalar result = new Scalar(this.scalarValue);
+        if (other instanceof Scalar) {
+            result.scalarValue = this.scalarValue - ((Scalar) other).scalarValue;
         } else {
 
         }
+        return result;
     }
 
     @Override
-    public void mult(Var var) {
-        if (var instanceof Scalar) {
-            this.scalarValue += ((Scalar) var).scalarValue;
+    public Scalar mult(Var other) {
+        Scalar result = new Scalar(this.scalarValue);
+        if (other instanceof Scalar) {
+            result.scalarValue = this.scalarValue * ((Scalar) other).scalarValue;
         } else {
 
         }
+        return result;
     }
 
     @Override
-    public void div(Var var) {
-        if (var instanceof Scalar) {
-            this.scalarValue += ((Scalar) var).scalarValue;
+    public Scalar div(Var other) {
+        Scalar result = new Scalar(this.scalarValue);
+        if (other instanceof Scalar) {
+            result.scalarValue = this.scalarValue / ((Scalar) other).scalarValue;
         } else {
 
         }
+        return result;
     }
 }

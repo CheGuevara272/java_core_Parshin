@@ -1,11 +1,11 @@
 package hometasks.calculator;
 
 public interface Operation<T extends Var> {
-    void sum(T t);
+    T sum(T t);
 
-    void subt(T t);
+    T subt(T t);
 
-    void mult(T t);
+    T mult(T t);
 
-    void div(T t);
+    T div(T t);
 }

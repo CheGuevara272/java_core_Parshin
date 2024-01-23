@@ -1,4 +1,4 @@
 package hometasks.calculator;
 
-abstract class Var {
+abstract class Var implements Operation<Var> {
 }

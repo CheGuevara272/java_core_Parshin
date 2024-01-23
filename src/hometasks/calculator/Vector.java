@@ -2,7 +2,7 @@ package hometasks.calculator;
 
 import java.util.Arrays;
 
-public class Vector extends Var implements Operation<Var> {
+public class Vector extends Var {
     public Double[] vectorValue;
 
     public Vector(Double[] value) {
@@ -23,46 +23,70 @@ public class Vector extends Var implements Operation<Var> {
     }
 
     @Override
-    public void sum(Var var) {
-        if (var instanceof Vector) {
+    public Vector sum(Var other) {
+        Vector result = new Vector(this.vectorValue);
+        if (other instanceof Vector) {
             for (int i = 0; i < this.vectorValue.length; i++) {
-                this.vectorValue[i] += ((Vector) var).vectorValue[i];
+                result.vectorValue[i] = this.vectorValue[i] + ((Vector) other).vectorValue[i];
             }
         } else {
 
         }
+        return result;
     }
 
     @Override
-    public void subt(Var var) {
-        if (var instanceof Vector) {
+    public Vector subt(Var other) {
+        Vector result = new Vector(this.vectorValue);
+        if (other instanceof Vector) {
             for (int i = 0; i < this.vectorValue.length; i++) {
-                this.vectorValue[i] -= ((Vector) var).vectorValue[i];
+                result.vectorValue[i] = this.vectorValue[i] - ((Vector) other).vectorValue[i];
             }
         } else {
 
         }
+        return result;
     }
 
     @Override
-    public void mult(Var var) {
-        if (var instanceof Vector) {
+    public Vector mult(Var other) {
+        Vector result = new Vector(this.vectorValue);
+        if (other instanceof Vector) {
             for (int i = 0; i < this.vectorValue.length; i++) {
-                this.vectorValue[i] *= ((Vector) var).vectorValue[i];
+                result.vectorValue[i] = this.vectorValue[i] * ((Vector) other).vectorValue[i];
+            }
+        } else if (other instanceof Scalar) {
+            for (int i = 0; i < this.vectorValue.length; i++) {
+                result.vectorValue[i] = this.vectorValue[i] * ((Scalar) other).scalarValue;
             }
         } else {
 
         }
+        return result;
     }
 
     @Override
-    public void div(Var var) {
-        if (var instanceof Vector) {
+    public Vector div(Var other) {
+        Vector result = new Vector(this.vectorValue);
+        if (other instanceof Vector) {
             for (int i = 0; i < this.vectorValue.length; i++) {
-                this.vectorValue[i] /= ((Vector) var).vectorValue[i];
+                result.vectorValue[i] = this.vectorValue[i] / ((Vector) other).vectorValue[i];
+            }
+        } else if (other instanceof Scalar) {
+            for (int i = 0; i < this.vectorValue.length; i++) {
+                result.vectorValue[i] = this.vectorValue[i] * ((Scalar) other).scalarValue;
             }
         } else {
 
         }
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Vector{");
+        sb.append("vectorValue=").append(Arrays.toString(vectorValue));
+        sb.append('}');
+        return sb.toString();
     }
 }
