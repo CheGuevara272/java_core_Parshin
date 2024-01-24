@@ -18,7 +18,7 @@ public class Vector extends Var {
     }
 
     public Double[] strToVector(String strVector) {
-        String[] vector = strVector.substring(1, strVector.length() - 1).split("\\,\\s");
+        String[] vector = strVector.substring(1, strVector.length() - 1).split("\\,");
         return Arrays.stream(vector).map(Double::valueOf).toArray(Double[]::new);
     }
 

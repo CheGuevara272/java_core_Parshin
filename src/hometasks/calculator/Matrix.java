@@ -30,9 +30,9 @@ public class Matrix extends Var {
     }
 
     public Double[][] strToMatrix(String strMatrix) {
-        String[] vectors = strMatrix.substring(2, strMatrix.length() - 2/*3*/).split("\\}\\,\\s\\{");
+        String[] vectors = strMatrix.substring(2, strMatrix.length() - 2/*3*/).split("\\}\\,\\{");
         return Arrays.stream(vectors).
-                map(s -> Arrays.stream(s.split("\\,\\s")).
+                map(s -> Arrays.stream(s.split("\\,")).
                         map(Double::parseDouble).toArray(Double[]::new)).
                 toArray(Double[][]::new);
     }
