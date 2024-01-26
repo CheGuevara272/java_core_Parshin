@@ -3,14 +3,6 @@ package hometasks.calculator;
 public class Scalar extends Var {
     public Double scalarValue;
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Scalar{");
-        sb.append("scalarValue=").append(scalarValue);
-        sb.append('}');
-        return sb.toString();
-    }
-
     public Scalar(Double value) {
         this.scalarValue = value;
     }
@@ -69,5 +61,13 @@ public class Scalar extends Var {
 
         }
         return result;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Scalar{");
+        sb.append("scalarValue=").append(scalarValue);
+        sb.append('}');
+        return sb.toString();
     }
 }

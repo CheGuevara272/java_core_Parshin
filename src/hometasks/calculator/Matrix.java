@@ -6,17 +6,6 @@ public class Matrix extends Var {
 
     public Double[][] matrixValue;
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Matrix{");
-        sb.append("matrixValue=");
-        for (int i = 0; i < matrixValue.length; i++) {
-            sb.append(Arrays.toString(matrixValue[i]));
-        }
-        sb.append('}');
-        return sb.toString();
-    }
-
     public Matrix(Double[][] value) {
         this.matrixValue = value;
     }
@@ -115,5 +104,16 @@ public class Matrix extends Var {
 
         }
         return result;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Matrix{");
+        sb.append("matrixValue=");
+        for (int i = 0; i < matrixValue.length; i++) {
+            sb.append(Arrays.toString(matrixValue[i]));
+        }
+        sb.append('}');
+        return sb.toString();
     }
 }
