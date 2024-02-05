@@ -10,7 +10,7 @@ public class Validator {
         return expression.replaceAll(" ", "");
     }
 
-    static char determineOperation(String expression) {
+    static char determineOperation(String expression) throws CustomException {
         char[] operations = {'+', '-', '*', '/', '='};
         char sing = 0;
         for (int i = 0; i < operations.length; i++) {
@@ -18,10 +18,14 @@ public class Validator {
                 sing = operations[i];
             }
         }
-        return sing;
+        if (sing == 0) {
+            throw new CustomException("Expression does not match syntax");
+        } else {
+            return sing;
+        }
     }
 
-    static Var determineFirstVar(String expression, char sing) {
+    static Var determineFirstVar(String expression, char sing) throws CustomException {
         String firstOperand = expression.substring(0, expression.indexOf(sing));
         if (firstOperand.matches(SCALAR_PATTERN)) {
             return new Scalar(firstOperand);
@@ -30,11 +34,11 @@ public class Validator {
         } else if (firstOperand.matches(MATRIX_PATTERN)) {
             return new Matrix(firstOperand);
         } else {
-            return null;
+            throw new CustomException("First operand does not match any pattern");
         }
     }
 
-    static Var determineSecondVar(String expression, char sing) {
+    static Var determineSecondVar(String expression, char sing) throws CustomException {
         String secondOperand = expression.substring(expression.indexOf(sing) + 1);
         if (secondOperand.matches(SCALAR_PATTERN)) {
             return new Scalar(secondOperand);
@@ -43,7 +47,13 @@ public class Validator {
         } else if (secondOperand.matches(MATRIX_PATTERN)) {
             return new Matrix(secondOperand);
         } else {
-            return null;
+            throw new CustomException("Second operand does not match any pattern");
+        }
+    }
+
+    static void checkClass(Var firstVar, Var secondVar) throws CustomException {
+        if (firstVar.getClass().equals(secondVar.getClass()) || secondVar.getClass() == Scalar.class) {
+
         }
     }
 }
