@@ -1,13 +1,15 @@
 package hometasks.calculator;
 
 public class Validator {
-
+    private Validator() {
+        throw new IllegalStateException("Utility class");
+    }
     private static final String SCALAR_PATTERN = "^(\\-|)\\d+$";
     private static final String VECTOR_PATTERN = "^\\{((\\-|)\\d+\\,)+(\\-|)\\d+\\}$";
     private static final String MATRIX_PATTERN = "^\\{(\\{((\\-|)\\d+\\,)+(\\-|)\\d+\\}\\,)+\\{((\\-|)\\d+\\,)+(\\-|)\\d+\\}\\}$";
 
     static String removeWhiteSpace(String expression) {
-        return expression.replaceAll(" ", "");
+        return expression.replaceAll("\\s", "");
     }
 
     static char determineOperation(String expression) throws CustomException {
@@ -52,8 +54,18 @@ public class Validator {
     }
 
     static void checkClass(Var firstVar, Var secondVar) throws CustomException {
-        if (firstVar.getClass().equals(secondVar.getClass()) || secondVar.getClass() == Scalar.class) {
+        if (firstVar.getClass().equals(secondVar.getClass())) {
+            sizeEquals(firstVar, secondVar);
+        } else if (secondVar.getClass() != Scalar.class) {
+            throw new CustomException("Operation on these operands is impossible");
+        }
+    }
 
+    private static void sizeEquals(Var firstVar, Var secondVar) throws CustomException {
+        if (firstVar instanceof Vector vector1 && secondVar instanceof Vector vector2 && (!vector1.sizeEquals(vector2))) {
+            throw new CustomException("Vectors are not the same size");
+        } else if (firstVar instanceof Matrix matrix1 && secondVar instanceof Matrix matrix2 && (!matrix1.sizeEquals(matrix2))) {
+            throw new CustomException("Matrices are not the same size");
         }
     }
 }

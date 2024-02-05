@@ -22,15 +22,17 @@ public class Vector extends Var {
         return Arrays.stream(vector).map(Double::valueOf).toArray(Double[]::new);
     }
 
+    public boolean sizeEquals(Vector vector) {
+        return this.vectorValue.length == vector.vectorValue.length;
+    }
+
     @Override
     public Vector sum(Var other) {
         Vector result = new Vector(this.vectorValue);
-        if (other instanceof Vector) {
+        if (other instanceof Vector vector) {
             for (int i = 0; i < this.vectorValue.length; i++) {
-                result.vectorValue[i] = this.vectorValue[i] + ((Vector) other).vectorValue[i];
+                result.vectorValue[i] = this.vectorValue[i] + vector.vectorValue[i];
             }
-        } else {
-
         }
         return result;
     }
@@ -38,12 +40,10 @@ public class Vector extends Var {
     @Override
     public Vector subt(Var other) {
         Vector result = new Vector(this.vectorValue);
-        if (other instanceof Vector) {
+        if (other instanceof Vector vector) {
             for (int i = 0; i < this.vectorValue.length; i++) {
-                result.vectorValue[i] = this.vectorValue[i] - ((Vector) other).vectorValue[i];
+                result.vectorValue[i] = this.vectorValue[i] - vector.vectorValue[i];
             }
-        } else {
-
         }
         return result;
     }
@@ -51,16 +51,14 @@ public class Vector extends Var {
     @Override
     public Vector mult(Var other) {
         Vector result = new Vector(this.vectorValue);
-        if (other instanceof Vector) {
+        if (other instanceof Vector vector) {
             for (int i = 0; i < this.vectorValue.length; i++) {
-                result.vectorValue[i] = this.vectorValue[i] * ((Vector) other).vectorValue[i];
+                result.vectorValue[i] = this.vectorValue[i] * vector.vectorValue[i];
             }
-        } else if (other instanceof Scalar) {
+        } else if (other instanceof Scalar scalar) {
             for (int i = 0; i < this.vectorValue.length; i++) {
-                result.vectorValue[i] = this.vectorValue[i] * ((Scalar) other).scalarValue;
+                result.vectorValue[i] = this.vectorValue[i] * scalar.scalarValue;
             }
-        } else {
-
         }
         return result;
     }
@@ -68,16 +66,14 @@ public class Vector extends Var {
     @Override
     public Vector div(Var other) {
         Vector result = new Vector(this.vectorValue);
-        if (other instanceof Vector) {
+        if (other instanceof Vector vector) {
             for (int i = 0; i < this.vectorValue.length; i++) {
-                result.vectorValue[i] = this.vectorValue[i] / ((Vector) other).vectorValue[i];
+                result.vectorValue[i] = this.vectorValue[i] / vector.vectorValue[i];
             }
-        } else if (other instanceof Scalar) {
+        } else if (other instanceof Scalar scalar) {
             for (int i = 0; i < this.vectorValue.length; i++) {
-                result.vectorValue[i] = this.vectorValue[i] * ((Scalar) other).scalarValue;
+                result.vectorValue[i] = this.vectorValue[i] / scalar.scalarValue;
             }
-        } else {
-
         }
         return result;
     }

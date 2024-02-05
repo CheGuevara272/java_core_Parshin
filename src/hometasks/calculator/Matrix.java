@@ -26,6 +26,19 @@ public class Matrix extends Var {
                 toArray(Double[][]::new);
     }
 
+    public boolean sizeEquals(Matrix matrix) {
+        boolean result = true;
+        if (this.matrixValue.length == matrix.matrixValue.length) {
+            for (int i = 0; i < this.matrixValue.length; i++) {
+                result = this.matrixValue[i].length == matrix.matrixValue[i].length;
+                if (!result) {
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
     @Override
     public Matrix sum(Var other) {
         Matrix result = new Matrix(this.matrixValue);
