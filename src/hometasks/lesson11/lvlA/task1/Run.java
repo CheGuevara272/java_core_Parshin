@@ -5,7 +5,7 @@ import java.util.Random;
 public class Run {
     public static void main(String[] args) {
         Random random = new Random();
-        Double mark = random.nextDouble() * 5;
+        int mark = random.nextInt(6);
         // а почему оценка типа Double?)
         try {
             checkMark(mark);
@@ -16,7 +16,7 @@ public class Run {
         }
     }
 
-    public static void checkMark(Double mark) throws StudentException {
+    public static void checkMark(int mark) throws StudentException {
         if (mark < 4) {
             throw new StudentException("Студент не сдал экзамен");
         }
