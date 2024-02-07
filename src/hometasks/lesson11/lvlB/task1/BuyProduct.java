@@ -12,11 +12,11 @@ public class BuyProduct {
     public static void buySmth(BankAccount bankAccount) throws NotEnoughMoneyException {
         Double cost = generateCost();
         if (bankAccount.getBalance() < cost) {
-            System.out.println("You tried buy something for " + cost);
+            System.out.println("You tried buy something for " + cost + "$. You have only " + String.format("%,.2f", bankAccount.getBalance()) + "$ left");
             throw new NotEnoughMoneyException("Not enough money for that purchase");
         } else {
             bankAccount.setBalance(bankAccount.getBalance() - cost);
-            System.out.println("You bought something for " + cost);
+            System.out.println("You bought something for " + cost + "$. You have " + String.format("%,.2f", bankAccount.getBalance()) + "$ left");
             // условие задачи: После каждой покупки выводить в консоль информацию о состоянии баланса.
         }
     }
