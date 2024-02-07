@@ -17,6 +17,7 @@ public class BuyProduct {
         } else {
             bankAccount.setBalance(bankAccount.getBalance() - cost);
             System.out.println("You bought something for " + cost);
+            // условие задачи: После каждой покупки выводить в консоль информацию о состоянии баланса.
         }
     }
 
