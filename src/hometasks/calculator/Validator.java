@@ -4,6 +4,7 @@ public class Validator {
     private Validator() {
         throw new IllegalStateException("Utility class");
     }
+
     private static final String SCALAR_PATTERN = "^(\\-|)\\d+$";
     private static final String VECTOR_PATTERN = "^\\{((\\-|)\\d+\\,)+(\\-|)\\d+\\}$";
     private static final String MATRIX_PATTERN = "^\\{(\\{((\\-|)\\d+\\,)+(\\-|)\\d+\\}\\,)+\\{((\\-|)\\d+\\,)+(\\-|)\\d+\\}\\}$";

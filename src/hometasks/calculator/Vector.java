@@ -27,34 +27,36 @@ public class Vector extends Var {
     }
 
     @Override
-    public Vector sum(Var other) {
+    public Vector sum(Var other) throws CustomException {
         Vector result = new Vector(this.vectorValue);
         if (other instanceof Vector vector) {
             for (int i = 0; i < this.vectorValue.length; i++) {
                 result.vectorValue[i] = this.vectorValue[i] + vector.vectorValue[i];
             }
+        } else {
+            throw new CustomException("You can not add scalar to vector");
         }
         return result;
     }
 
     @Override
-    public Vector subt(Var other) {
+    public Vector subt(Var other) throws CustomException {
         Vector result = new Vector(this.vectorValue);
         if (other instanceof Vector vector) {
             for (int i = 0; i < this.vectorValue.length; i++) {
                 result.vectorValue[i] = this.vectorValue[i] - vector.vectorValue[i];
             }
+        } else {
+            throw new CustomException("You can not subtract scalar from vector");
         }
         return result;
     }
 
     @Override
-    public Vector mult(Var other) {
+    public Vector mult(Var other) throws CustomException {
         Vector result = new Vector(this.vectorValue);
-        if (other instanceof Vector vector) {
-            for (int i = 0; i < this.vectorValue.length; i++) {
-                result.vectorValue[i] = this.vectorValue[i] * vector.vectorValue[i];
-            }
+        if (other instanceof Vector) {
+            throw new CustomException("There is no such operation as multiplication for two vectors. You can multiply only by scalar");
         } else if (other instanceof Scalar scalar) {
             for (int i = 0; i < this.vectorValue.length; i++) {
                 result.vectorValue[i] = this.vectorValue[i] * scalar.scalarValue;
@@ -64,13 +66,12 @@ public class Vector extends Var {
     }
 
     @Override
-    public Vector div(Var other) {
+    public Vector div(Var other) throws CustomException {
         Vector result = new Vector(this.vectorValue);
-        if (other instanceof Vector vector) {
-            for (int i = 0; i < this.vectorValue.length; i++) {
-                result.vectorValue[i] = this.vectorValue[i] / vector.vectorValue[i];
-            }
+        if (other instanceof Vector) {
+            throw new CustomException("There is no such operation as division for two vectors. You can divide only by scalar");
         } else if (other instanceof Scalar scalar) {
+            if (scalar.scalarValue == 0) throw new CustomException("You can not divide by 0");
             for (int i = 0; i < this.vectorValue.length; i++) {
                 result.vectorValue[i] = this.vectorValue[i] / scalar.scalarValue;
             }

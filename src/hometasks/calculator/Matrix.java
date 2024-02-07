@@ -42,15 +42,12 @@ public class Matrix extends Var {
     @Override
     public Matrix sum(Var other) {
         Matrix result = new Matrix(this.matrixValue);
-        if (other instanceof Matrix) {
-            if (((Matrix) other).matrixValue.length == this.matrixValue.length && ((Matrix) other).matrixValue[0].length == this.matrixValue[0].length) {
-                for (int row = 0; row < this.matrixValue.length; row++) {
-                    for (int col = 0; col < this.matrixValue[0].length; col++) {
-                        result.matrixValue[row][col] = this.matrixValue[row][col] + ((Matrix) other).matrixValue[row][col];
-                    }
+        if (other instanceof Matrix matrix && matrix.matrixValue.length == this.matrixValue.length && matrix.matrixValue[0].length == this.matrixValue[0].length) {
+            for (int row = 0; row < this.matrixValue.length; row++) {
+                for (int col = 0; col < this.matrixValue[0].length; col++) {
+                    result.matrixValue[row][col] = this.matrixValue[row][col] + matrix.matrixValue[row][col];
                 }
             }
-        } else {
 
         }
         return result;
@@ -59,15 +56,12 @@ public class Matrix extends Var {
     @Override
     public Matrix subt(Var other) {
         Matrix result = new Matrix(this.matrixValue);
-        if (other instanceof Matrix) {
-            if (((Matrix) other).matrixValue.length == this.matrixValue.length && ((Matrix) other).matrixValue[0].length == this.matrixValue[0].length) {
-                for (int row = 0; row < this.matrixValue.length; row++) {
-                    for (int col = 0; col < this.matrixValue[0].length; col++) {
-                        result.matrixValue[row][col] = this.matrixValue[row][col] - ((Matrix) other).matrixValue[row][col];
-                    }
+        if (other instanceof Matrix matrix && matrix.matrixValue.length == this.matrixValue.length && matrix.matrixValue[0].length == this.matrixValue[0].length) {
+            for (int row = 0; row < this.matrixValue.length; row++) {
+                for (int col = 0; col < this.matrixValue[0].length; col++) {
+                    result.matrixValue[row][col] = this.matrixValue[row][col] - matrix.matrixValue[row][col];
                 }
             }
-        } else {
 
         }
         return result;
@@ -76,45 +70,34 @@ public class Matrix extends Var {
     @Override
     public Matrix mult(Var other) {
         Matrix result = new Matrix(this.matrixValue);
-        if (other instanceof Matrix) {
-            if (((Matrix) other).matrixValue.length == this.matrixValue.length && ((Matrix) other).matrixValue[0].length == this.matrixValue[0].length) {
-                for (int row = 0; row < this.matrixValue.length; row++) {
-                    for (int col = 0; col < this.matrixValue[0].length; col++) {
-                        result.matrixValue[row][col] = this.matrixValue[row][col] * ((Matrix) other).matrixValue[row][col];
-                    }
-                }
-            }
-        } else if (other instanceof Scalar) {
+        if (other instanceof Matrix matrix && matrix.matrixValue.length == this.matrixValue.length && matrix.matrixValue[0].length == this.matrixValue[0].length) {
             for (int row = 0; row < this.matrixValue.length; row++) {
                 for (int col = 0; col < this.matrixValue[0].length; col++) {
-                    result.matrixValue[row][col] = this.matrixValue[row][col] * ((Scalar) other).scalarValue;
+                    result.matrixValue[row][col] = this.matrixValue[row][col] * matrix.matrixValue[row][col];
                 }
             }
-        } else {
-
+        } else if (other instanceof Scalar scalar) {
+            for (int row = 0; row < this.matrixValue.length; row++) {
+                for (int col = 0; col < this.matrixValue[0].length; col++) {
+                    result.matrixValue[row][col] = this.matrixValue[row][col] * scalar.scalarValue;
+                }
+            }
         }
         return result;
     }
 
     @Override
-    public Matrix div(Var other) {
+    public Matrix div(Var other) throws CustomException {
         Matrix result = new Matrix(this.matrixValue);
         if (other instanceof Matrix) {
-            if (((Matrix) other).matrixValue.length == this.matrixValue.length && ((Matrix) other).matrixValue[0].length == this.matrixValue[0].length) {
-                for (int row = 0; row < this.matrixValue.length; row++) {
-                    for (int col = 0; col < this.matrixValue[0].length; col++) {
-                        result.matrixValue[row][col] = this.matrixValue[row][col] / ((Matrix) other).matrixValue[row][col];
-                    }
-                }
-            }
-        } else if (other instanceof Scalar) {
+            throw new CustomException("There is no such operation as division for two matrices. You can divide only by scalar");
+        } else if (other instanceof Scalar scalar) {
+            if (scalar.scalarValue == 0) throw new CustomException("You can not divide by 0");
             for (int row = 0; row < this.matrixValue.length; row++) {
                 for (int col = 0; col < this.matrixValue[0].length; col++) {
-                    result.matrixValue[row][col] = this.matrixValue[row][col] / ((Scalar) other).scalarValue;
+                    result.matrixValue[row][col] = this.matrixValue[row][col] / scalar.scalarValue;
                 }
             }
-        } else {
-
         }
         return result;
     }
@@ -123,8 +106,8 @@ public class Matrix extends Var {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Matrix{");
         sb.append("matrixValue=");
-        for (int i = 0; i < matrixValue.length; i++) {
-            sb.append(Arrays.toString(matrixValue[i]));
+        for (Double[] doubles : matrixValue) {
+            sb.append(Arrays.toString(doubles));
         }
         sb.append('}');
         return sb.toString();
