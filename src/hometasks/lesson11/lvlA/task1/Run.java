@@ -6,7 +6,6 @@ public class Run {
     public static void main(String[] args) {
         Random random = new Random();
         int mark = random.nextInt(6);
-        // а почему оценка типа Double?)
         try {
             checkMark(mark);
         } catch (StudentException exception) {
