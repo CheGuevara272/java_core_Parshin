@@ -9,14 +9,18 @@ public class MyHashMap<K, V> implements Map<K, V> {
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
     static final int MAXIMUM_CAPACITY = 1 << 30;
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
-
+    final float loadFactor;
     transient Node<K, V>[] table;
     int threshold;
-    final float loadFactor;
     transient int size;
 
     public MyHashMap() {
         this.loadFactor = DEFAULT_LOAD_FACTOR; // all other fields defaulted
+    }
+
+    static final int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
     }
 
     public V put(K key, V value) {
@@ -32,52 +36,6 @@ public class MyHashMap<K, V> implements Map<K, V> {
         Node<K, V> e;
         return (e = removeNode(hash(key), key, null, false)) == null ?
                 null : e.value;
-    }
-
-    static class Node<K, V> implements Map.Entry<K, V> {
-        final int hash;
-        final K key;
-        V value;
-        Node<K, V> next;
-
-        Node(int hash, K key, V value, Node<K, V> next) {
-            this.hash = hash;
-            this.key = key;
-            this.value = value;
-            this.next = next;
-        }
-
-        public final K getKey() {
-            return key;
-        }
-
-        public final V getValue() {
-            return value;
-        }
-
-        public final String toString() {
-            return key + "=" + value;
-        }
-
-        public final int hashCode() {
-            return Objects.hashCode(key) ^ Objects.hashCode(value);
-        }
-
-        public final V setValue(V newValue) {
-            V oldValue = value;
-            value = newValue;
-            return oldValue;
-        }
-
-        public final boolean equals(Object o) {
-            if (o == this)
-                return true;
-
-            return o instanceof Map.Entry<?, ?> e
-                    && Objects.equals(key, e.getKey())
-                    && Objects.equals(value, e.getValue());
-        }
-
     }
 
     final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
@@ -191,11 +149,6 @@ public class MyHashMap<K, V> implements Map<K, V> {
     void afterNodeRemoval(Node<K, V> p) {
     }
 
-    static final int hash(Object key) {
-        int h;
-        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
-    }
-
     final Node<K, V> getNode(Object key) {
         Node<K, V>[] tab;
         Node<K, V> first, e;
@@ -255,7 +208,6 @@ public class MyHashMap<K, V> implements Map<K, V> {
         return null;
     }
 
-
     @Override
     public int size() {
         return 0;
@@ -299,5 +251,51 @@ public class MyHashMap<K, V> implements Map<K, V> {
     @Override
     public Set<Entry<K, V>> entrySet() {
         return null;
+    }
+
+    static class Node<K, V> implements Map.Entry<K, V> {
+        final int hash;
+        final K key;
+        V value;
+        Node<K, V> next;
+
+        Node(int hash, K key, V value, Node<K, V> next) {
+            this.hash = hash;
+            this.key = key;
+            this.value = value;
+            this.next = next;
+        }
+
+        public final K getKey() {
+            return key;
+        }
+
+        public final V getValue() {
+            return value;
+        }
+
+        public final String toString() {
+            return key + "=" + value;
+        }
+
+        public final int hashCode() {
+            return Objects.hashCode(key) ^ Objects.hashCode(value);
+        }
+
+        public final V setValue(V newValue) {
+            V oldValue = value;
+            value = newValue;
+            return oldValue;
+        }
+
+        public final boolean equals(Object o) {
+            if (o == this)
+                return true;
+
+            return o instanceof Map.Entry<?, ?> e
+                    && Objects.equals(key, e.getKey())
+                    && Objects.equals(value, e.getValue());
+        }
+
     }
 }

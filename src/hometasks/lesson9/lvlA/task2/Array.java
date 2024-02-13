@@ -1,7 +1,7 @@
 package hometasks.lesson9.lvlA.task2;
 
 public class Array {
-    private Object[] array = new Object[5];
+    private final Object[] array = new Object[5];
 
 
     public void setElement(int index, Object element) {

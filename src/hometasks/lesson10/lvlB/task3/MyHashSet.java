@@ -13,8 +13,8 @@ import java.util.*;
 */
 
 public class MyHashSet<T> implements Set<T> {
-    private transient HashMap<T, Object> map;
     private static final Object PRESENT = new Object();
+    private final transient HashMap<T, Object> map;
 
     public MyHashSet() {
         map = new HashMap<>();
@@ -35,10 +35,9 @@ public class MyHashSet<T> implements Set<T> {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("MyHashSet{");
-        sb.append("map=").append(map);
-        sb.append('}');
-        return sb.toString();
+        String sb = "MyHashSet{" + "map=" + map +
+                '}';
+        return sb;
     }
 
     @Override

@@ -3,15 +3,14 @@ package hometasks.lesson7.lvlB.task1;
 import java.math.BigDecimal;
 
 public class BankAccount {
-    private long accountId;
+    Transaction transaction = new Transaction();
+    private final long accountId;
     private BigDecimal balance = BigDecimal.valueOf(0.0);
 
     BankAccount(AccountIdGen accountIdGen) {
         accountId = accountIdGen.nextAccountId;
         accountIdGen.generateNextAccountId();
     }
-
-    Transaction transaction = new Transaction();
 
     public static class AccountIdGen {
         private long nextAccountId = 1;

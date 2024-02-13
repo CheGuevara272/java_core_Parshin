@@ -13,12 +13,12 @@ public class Pair<L, R> {
         return l;
     }
 
-    public R getR() {
-        return r;
-    }
-
     public void setL(L l) {
         this.l = l;
+    }
+
+    public R getR() {
+        return r;
     }
 
     public void setR(R r) {

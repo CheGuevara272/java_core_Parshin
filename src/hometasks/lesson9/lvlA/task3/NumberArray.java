@@ -1,7 +1,7 @@
 package hometasks.lesson9.lvlA.task3;
 
 public class NumberArray {
-    private Number[] numberArray = new Number[5];
+    private final Number[] numberArray = new Number[5];
 
 
     public void setElement(int index, Number element) {

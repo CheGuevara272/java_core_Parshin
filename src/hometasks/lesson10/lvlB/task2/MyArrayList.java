@@ -17,14 +17,10 @@ import java.util.*;
 */
 
 public class MyArrayList<T> implements List<T> {
-    Object[] data;
-
     private static final int DEFAULT_CAPACITY = 10;
-
     private static final Object[] EMPTY_DATA = {};
-
     private static final Object[] DEFAULTCAPACITY_EMPTY_DATA = {};
-
+    Object[] data;
     private int size;
 
     MyArrayList(int initialCapacity) {
@@ -41,10 +37,9 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("MyArrayList{");
-        sb.append("data=").append(Arrays.toString(data));
-        sb.append('}');
-        return sb.toString();
+        String sb = "MyArrayList{" + "data=" + Arrays.toString(data) +
+                '}';
+        return sb;
     }
 
     private void add(T t, Object[] data, int s) {

@@ -9,7 +9,7 @@ public class Remover<T> {
     public List<T> remover(List<T> c) {
         ListIterator<T> listIterator = c.listIterator();
         while (listIterator.hasNext()) {
-            if (notRemove == false) {
+            if (!notRemove) {
                 listIterator.next();
                 listIterator.remove();
                 notRemove = true;

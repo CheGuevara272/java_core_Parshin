@@ -135,18 +135,6 @@ public class MyLinkedList<T> implements List<T> {
         size++;
     }
 
-    private static class Node<T> {
-        T item;
-        Node<T> next;
-        Node<T> prev;
-
-        Node(Node<T> prev, T element, Node<T> next) {
-            this.item = element;
-            this.next = next;
-            this.prev = prev;
-        }
-    }
-
     T unlink(Node<T> x) {
         final T element = x.item;
         final Node<T> next = x.next;
@@ -184,7 +172,6 @@ public class MyLinkedList<T> implements List<T> {
             return x;
         }
     }
-
 
     @Override
     public int size() {
@@ -264,5 +251,17 @@ public class MyLinkedList<T> implements List<T> {
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
         return null;
+    }
+
+    private static class Node<T> {
+        T item;
+        Node<T> next;
+        Node<T> prev;
+
+        Node(Node<T> prev, T element, Node<T> next) {
+            this.item = element;
+            this.next = next;
+            this.prev = prev;
+        }
     }
 }

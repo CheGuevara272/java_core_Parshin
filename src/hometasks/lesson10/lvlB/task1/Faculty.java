@@ -5,12 +5,11 @@ import java.util.List;
 
 public class Faculty {
     String facultyName;
+    List<Group> faculty = new ArrayList<>();
 
     public Faculty(String facultyName) {
         this.facultyName = facultyName;
     }
-
-    List<Group> faculty = new ArrayList<>();
 
     public void addGroup(Group group) {
         this.faculty.add(group);

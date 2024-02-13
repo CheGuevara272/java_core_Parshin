@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public class Group {
-    private List<Pair<String, Double>> studentList = new ArrayList<>();
+    private final List<Pair<String, Double>> studentList = new ArrayList<>();
 
     public void printGroup() {
         Iterator groupIterator = studentList.listIterator();

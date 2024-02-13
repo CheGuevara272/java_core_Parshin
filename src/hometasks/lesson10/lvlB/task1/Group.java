@@ -5,12 +5,11 @@ import java.util.List;
 
 public class Group {
     int groupNumber;
+    List<Student> group = new ArrayList<>();
 
     public Group(int groupNumber) {
         this.groupNumber = groupNumber;
     }
-
-    List<Student> group = new ArrayList<>();
 
     public void addStudent(Student student) {
         this.group.add(student);

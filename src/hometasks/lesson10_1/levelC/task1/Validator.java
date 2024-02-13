@@ -35,10 +35,6 @@ public class Validator {
     }
 
     private boolean checkNext(char next) {
-        if (next == '*' || next == '/' || next == '=') {
-            return true;
-        } else {
-            return false;
-        }
+        return next == '*' || next == '/' || next == '=';
     }
 }
