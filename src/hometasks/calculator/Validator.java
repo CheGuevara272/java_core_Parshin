@@ -1,25 +1,31 @@
 package hometasks.calculator;
 
 public class Validator {
-    private Validator() {
-        throw new IllegalStateException("Utility class");
-    }
-
     private static final String SCALAR_PATTERN = "^(\\-|)\\d+$";
     private static final String VECTOR_PATTERN = "^\\{((\\-|)\\d+\\,)+(\\-|)\\d+\\}$";
     private static final String MATRIX_PATTERN = "^\\{(\\{((\\-|)\\d+\\,)+(\\-|)\\d+\\}\\,)+\\{((\\-|)\\d+\\,)+(\\-|)\\d+\\}\\}$";
 
+    private Validator() {
+        throw new IllegalStateException("Utility class");
+    }
+
     static String removeWhiteSpace(String expression) {
         return expression.replaceAll("\\s", "");
+    }
+
+    static boolean validateOperand(String expression) throws CustomException {
+        if (expression.matches(SCALAR_PATTERN) || expression.matches(VECTOR_PATTERN) || expression.matches(MATRIX_PATTERN)) {
+            return true;
+        } else {
+            throw new CustomException("Operand does not match syntax and can not be saved");
+        }
     }
 
     static char determineOperation(String expression) throws CustomException {
         char[] operations = {'+', '-', '*', '/', '='};
         char sing = 0;
         for (int i = 0; i < operations.length; i++) {
-            if (expression.indexOf(operations[i]) != -1) {
-                sing = operations[i];
-            }
+            if (expression.indexOf(operations[i]) != -1) sing = operations[i];
         }
         if (sing == 0) {
             throw new CustomException("Expression does not match syntax");

@@ -81,9 +81,6 @@ public class Vector extends Var {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Vector{");
-        sb.append("vectorValue=").append(Arrays.toString(vectorValue));
-        sb.append('}');
-        return sb.toString();
+        return "Vector{" + "vectorValue=" + Arrays.toString(vectorValue) + '}';
     }
 }

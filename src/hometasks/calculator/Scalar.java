@@ -58,9 +58,6 @@ public class Scalar extends Var {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Scalar{");
-        sb.append("scalarValue=").append(scalarValue);
-        sb.append('}');
-        return sb.toString();
+        return "Scalar{" + "scalarValue=" + scalarValue + '}';
     }
 }

@@ -3,7 +3,7 @@ package hometasks.calculator;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Saver {
+public class CustomSaver {
     TreeMap<Character, String> operands = new TreeMap<>();
 
     public boolean save(String line) {
