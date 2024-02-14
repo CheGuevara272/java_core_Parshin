@@ -2,6 +2,11 @@ package hometasks.lesson12.lvlB.task3;
 
 import java.io.*;
 
+/*Напишите метод, который принимает на вход строку и записывает её в файл в папке текущей задачи.
+  Создайте класс Run и в методе main напишите код, который передаёт в метод по одному слову
+  (все слова разные) для записи в файл. Считайте из созданного файла записанную информацию
+  и выведите её в консоль.*/
+
 public class Run {
     private static final String DIR = "../java_core_group00/src/hometasks/lesson12/lvlB/task3";
 
