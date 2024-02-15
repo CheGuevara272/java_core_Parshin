@@ -9,9 +9,26 @@ public class CustomWriter {
         try (Writer fileWriter = new FileWriter(new File(DIR, "saved_expressions.txt"), true);
              BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             bufferedWriter.write(expression);
+            bufferedWriter.newLine();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static void removeLine(int lineNum) {
+        String line;
+        try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+            for (int i = 0; i < lineNum; i++)
+                br.readLine();
+            line = br.readLine();
+            System.out.println(line);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void removeLine(String line) {
+
     }
 
     public static void cleanFile() {

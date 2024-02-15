@@ -1,5 +1,6 @@
 package hometasks.calculator;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleRunner {
@@ -14,7 +15,8 @@ public class ConsoleRunner {
                     "\n1. printvar" +
                     "\n2. save" +
                     "\n3. clean file" +
-                    "\n4. end");
+                    "\n4. remove line" +
+                    "\n5. end");
             expression = scanner.nextLine();
             expression = Validator.removeWhiteSpace(expression);
             switch (expression) {
@@ -37,7 +39,23 @@ public class ConsoleRunner {
                     CustomWriter.cleanFile();
                     continue;
                 }
-                case ("end"), ("4"), ("") -> {
+                case ("remove line"), ("4") -> {
+                    System.out.println("Введите номер строки, которую хотите удалить из файла: ");
+                    String line = scanner.nextLine();
+                    line = Validator.removeWhiteSpace(line);
+                    try {
+                        String finalLine = line;
+                        List<String> lines = CustomReader.readStream().filter(i -> !(i.equals(finalLine))).toList();
+                        System.out.println(line);
+                        for (String item : lines) {
+                            CustomWriter.writeBufferedVar(item);
+                        }
+
+                    } catch (CustomException e) {
+                        System.err.println(e.getMessage());
+                    }
+                }
+                case ("end"), ("5"), ("") -> {
                     continue;
                 }
             }
