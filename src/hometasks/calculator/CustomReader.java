@@ -7,9 +7,13 @@ import java.io.IOException;
 import java.util.stream.Stream;
 
 public class CustomReader {
-    private static final String DIR = "../java_core_group00/src/hometasks/calculator";
+    CustomReader() {
+        throw new IllegalStateException("Utility class");
+    }
 
-    public static void readBufferedVar() {
+    private static final String DIR = "../src/hometasks/calculator";
+
+    public static void readBufferedVar() throws CustomException {
         try (FileReader fileReader = new FileReader(new File(DIR, "saved_expressions.txt"));
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             String line;
@@ -17,16 +21,15 @@ public class CustomReader {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            CustomWriter.writeBufferedVar("");
+            throw new CustomException("Error while reading file", e);
         }
     }
 
     public static Stream<String> readStream() throws CustomException {
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(DIR, "saved_expressions.txt")));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(DIR, "saved_expressions.txt")))) {
             return bufferedReader.lines();
         } catch (IOException e) {
-            throw new CustomException("Error while reading file");
+            throw new CustomException("Error while reading file", e);
         }
     }
 }

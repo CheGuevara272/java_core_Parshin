@@ -1,16 +1,19 @@
 package hometasks.calculator;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleRunner {
+    private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        CustomLogger.newLogFile();
         String expression = null;
-        CustomSaver customSaver = new CustomSaver();
         while (!("end".equals(expression))) {
             System.out.println("Сохранённые переменные: ");
-            CustomReader.readBufferedVar();
+            try {
+                CustomReader.readBufferedVar();
+            } catch (CustomException e) {
+                CustomLogger.newLog(e.getMessage(), e);
+            }
             System.out.println("Введите выражение, или одну из следующих операций: " +
                     "\n1. printvar" +
                     "\n2. save" +
@@ -19,63 +22,31 @@ public class ConsoleRunner {
                     "\n5. end");
             expression = scanner.nextLine();
             expression = Validator.removeWhiteSpace(expression);
-            switch (expression) {
-                case ("printvar"), ("1") -> {
-                    customSaver.printVar();
-                    continue;
-                }
-                case ("save"), ("2") -> {
-                    System.out.println("Введите переменную, которую хотите сохранить в файл: ");
-                    expression = scanner.nextLine();
-                    expression = Validator.removeWhiteSpace(expression);
-                    try {
-                        if (Validator.validateOperand(expression)) CustomWriter.writeBufferedVar(expression);
-                    } catch (CustomException e) {
-                        System.err.println(e.getMessage());
-                    }
-                    continue;
-                }
-                case ("clean file"), ("3") -> {
-                    CustomWriter.cleanFile();
-                    continue;
-                }
-                case ("remove line"), ("4") -> {
-                    System.out.println("Введите номер строки, которую хотите удалить из файла: ");
-                    String line = scanner.nextLine();
-                    line = Validator.removeWhiteSpace(line);
-                    try {
-                        String finalLine = line;
-                        List<String> lines = CustomReader.readStream().filter(i -> !(i.equals(finalLine))).toList();
-                        System.out.println(line);
-                        for (String item : lines) {
-                            CustomWriter.writeBufferedVar(item);
-                        }
-
-                    } catch (CustomException e) {
-                        System.err.println(e.getMessage());
-                    }
-                }
-                case ("end"), ("5"), ("") -> {
-                    continue;
-                }
-            }
-            char sing;
-            Var var1;
-            Var var2;
             try {
-                sing = Validator.determineOperation(expression);
-                var1 = Validator.determineFirstVar(expression, sing);
-                var2 = Validator.determineSecondVar(expression, sing);
-                Validator.checkClass(var1, var2);
-                switch (sing) {
-                    case ('+') -> System.out.println(var1.sum(var2));
-                    case ('-') -> System.out.println(var1.subt(var2));
-                    case ('*') -> System.out.println(var1.mult(var2));
-                    case ('/') -> System.out.println(var1.div(var2));
-                    case ('=') -> customSaver.save(expression);
+                switch (expression) {
+                    case ("printvar"), ("1") -> {
+                        CustomTaskManager.print();
+                        continue;
+                    }
+                    case ("save"), ("2") -> {
+                        CustomTaskManager.save();
+                        continue;
+                    }
+                    case ("clean file"), ("3") -> {
+                        CustomTaskManager.clean();
+                        continue;
+                    }
+                    case ("remove line"), ("4") -> {
+                        CustomTaskManager.remove();
+                        continue;
+                    }
+                    case ("end"), ("5"), ("") -> {
+                        continue;
+                    }
                 }
+                CustomTaskManager.calculate(expression);
             } catch (CustomException e) {
-                System.err.println(e.getMessage());
+                CustomLogger.newLog(e.getMessage(), e);
             }
         }
     }
