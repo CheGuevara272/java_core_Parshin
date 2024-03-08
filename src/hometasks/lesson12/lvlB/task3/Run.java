@@ -8,7 +8,7 @@ import java.io.*;
   и выведите её в консоль.*/
 
 public class Run {
-    private static final String DIR = "../java_core_group00/src/hometasks/lesson12/lvlB/task3";
+    private static final String DIR = "../src/hometasks/lesson12/lvlB/task3";
 
     public static void main(String[] args) {
         writeBufferedText("Привет, ", false);

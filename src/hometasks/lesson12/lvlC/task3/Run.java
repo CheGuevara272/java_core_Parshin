@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Run {
-    private static final String DIR = "../java_core_group00/src/hometasks/lesson12/lvlC/task3";
+    private static final String DIR = "../src/hometasks/lesson12/lvlC/task3";
 
     public static void main(String[] args) {
         List<Student> studentList = new ArrayList<>();

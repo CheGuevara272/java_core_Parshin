@@ -10,7 +10,7 @@ import java.io.Writer;
 /*Создайте класс Run и в методе main напишите код, который берёт стихотворение из класса Versh и записывает его в файл versh.txt.*/
 
 public class Run {
-    private static final String DIR = "../java_core_group00/src/hometasks/lesson12/lvlA/task1";
+    private static final String DIR = "../src/hometasks/lesson12/lvlA/task1";
 
     public static void main(String[] args) {
         writeText(Versh.versh);
